@@ -1,10 +1,11 @@
-class UsersController < ApplicationController
+class EventsController < ApplicationController
 
 get "/new_event" do
   if logged_in
   erb :new_event
 else
   redirect to "/log_in"
+end
 end
 
 post "/new_event" do

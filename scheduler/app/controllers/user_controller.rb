@@ -10,6 +10,16 @@ class UsersController < ApplicationController
     end
   end
 
+  get "/log_in" do
+    if !logged_in
+      erb :"/users/log_in"
+    else
+      redirect to "/user_index"
+    end
+  end
+
+
+
     get "/user_index" do
       if logged_in
         @user = current_user

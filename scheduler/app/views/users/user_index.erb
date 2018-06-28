@@ -2,7 +2,7 @@
 <p>You have created <%=@user.events.length %> events.</p>
 
 <%@user.events.each do |event|%>
-<p><em><%=event.name%></em></p>
+<p><strong><%=event.name%></strong></p>
 <p><%=event.location%></p>
 <p><%=event.date, event.time%></p>
 <%end%>
