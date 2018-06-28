@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
 
 get "/new_event" do
+  binding.pry
   if logged_in
   erb :new_event
 else

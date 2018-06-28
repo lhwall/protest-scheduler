@@ -24,17 +24,19 @@ class UsersController < ApplicationController
 
 post "/log_in" do
   @user = User.find_by(:username => params[:username])
-  if @user && user.authenticate(params[:password])
-    session[:user_id] = user.d
-  erb :user_index
+  if @user && @user.authenticate(params[:password])
+    binding.pry
+    session[:user_id] = @user.id
+  erb :"users/user_index"
   else
     erb :"users/log_in"
+end
 end
 
     get "/user_index" do
       if logged_in
         @user = current_user
-        erb :user_index
+        erb :"users/user_index"
       else
         erb :"users/log_in"
       end

@@ -1,6 +1,7 @@
 require './config/environment'
 
 class ApplicationController < Sinatra::Base
+  enable :sessions
 
   configure do
     set :public_folder, 'public'
@@ -14,7 +15,7 @@ class ApplicationController < Sinatra::Base
   helpers do
 
    def logged_in
-     !session[:user_id] == nil
+     session[:user_id] != nil
    end
 
    def current_user
