@@ -1,1 +1,11 @@
-Welcome to the Protest Scheduler!  Please <a href="/log_in">log in</a> or <a href="/sign_up">sign up</a>.
+Welcome to the Protest Scheduler!  <%if !logged_in%>
+To create or modify an event, please <a href="/log_in">log in</a> or <a href="/sign_up">sign up</a>.
+<%end%>
+<br>
+<% Event.all.each do |event| %>
+<p><strong><a href="/events/<%=event.id%>"><%=event.name%></strong></a></p>
+<p><%=event.location%></p>
+<p><%=event.date%>,<%= event.time%></p>
+<%if event.category_id %><p><strong><%=event.category.name  %></strong></p><%end%>
+<%end%>
+</br>

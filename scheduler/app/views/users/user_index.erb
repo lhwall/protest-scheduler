@@ -1,11 +1,13 @@
 <h3>Welcome, <%= @user.username %><% #binding.pry%></h3>
+<br>
 <a href="/new_event">Create a New Event</a>
-<br><br>
+<br>
 <p>You have created <%=@user.events.length %> events.</p>
 
 <%@user.events.each do |event|%>
 <p><strong><%=event.name%></strong></p>
 <p><%=event.location%></p>
 <p><%=event.date%>,<%= event.time%></p>
+<a href="/update_event">Update</a> <a href="/delete">Delete</a>
 <%end%>
 </br>
