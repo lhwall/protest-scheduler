@@ -1,12 +1,16 @@
 class UsersController < ApplicationController
 
-  post "/signup" do
+ get "/sign_up" do
+   erb :"users/sign_up"
+ end
+
+  post "/sign_up" do
     if params[:username] == "" || params[:password] == ""
       redirect to "/signup"
     else
       @user = User.create(:username => params[:username], :password => params[:password])
       session[:user_id] = @user.id
-      redirect to "/user_index"
+      erb :user_index
     end
   end
 
@@ -18,7 +22,14 @@ class UsersController < ApplicationController
     end
   end
 
-
+post "/log_in" do
+  @user = User.find_by(:username => params[:username])
+  if @user && user.authenticate(params[:password])
+    session[:user_id] = user.d
+  erb :user_index
+  else
+    erb :"users/log_in"
+end
 
     get "/user_index" do
       if logged_in
