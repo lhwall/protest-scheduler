@@ -48,7 +48,7 @@ patch "/events/:id/update" do
   #binding.pry
   @event = Event.find(params[:id])
   if @event.user == current_user
-    @event = Event.update(:name => params[:name], :location => params[:location], :date => params[:date], :time => params[:time], :description => params[:description], :user_id => current_user.id)
+    @event.update(:name => params[:name], :location => params[:location], :date => params[:date], :time => params[:time], :description => params[:description])
     # if params[:new_category] != ""
     #    @category = Category.new(:name => params[:new_category])
     #    @category.save
