@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     else
       @user = User.create(:username => params[:username], :password => params[:password])
       session[:user_id] = @user.id
-      erb :user_index
+      erb :"users/user_index"
     end
   end
 
@@ -40,6 +40,11 @@ end
       else
         erb :"users/log_in"
       end
+    end
+
+    get "/log_out" do
+      session.destroy
+      erb :index
     end
 
 end

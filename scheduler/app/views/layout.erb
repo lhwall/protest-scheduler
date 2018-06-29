@@ -13,7 +13,9 @@
 
   <link rel="stylesheet" href="/stylesheets/main.css" />
 </head>
-<%if logged_in%><body><a href="/log_out">Log Out</a> <a href="/">Index</a> <a href="/user_index">Your Page</a><%end%>
+<%if logged_in%><body><a href="/log_out">Log Out</a> <a href="/">Index</a> <a href="/user_index">Your Page</a><%end%><%if !logged_in%>
+To create or modify an event, please <a href="/log_in">log in</a> or <a href="/sign_up">sign up</a>.
+<%end%>
   <div class="wrapper">
 
       <%= yield %>

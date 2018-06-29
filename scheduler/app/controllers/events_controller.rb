@@ -32,16 +32,16 @@ erb :"events/event_detail"
 end
 
 get "/events/:id/update" do
-if logged_in
-  @event = Event.find(params[:id])
-  if @event.user == current_user
-    binding.pry
-    erb :"events/update_event"
+  if logged_in
+    @event = Event.find(params[:id])
+    if @event && @event.user == current_user
+      erb :'events/update_event'
+    else
+      redirect to "/"
+    end
   else
-    redirect to "/"
-end
-redirect to "/log_in"
-end
+    redirect to "/log_in"
+  end
 end
 
 patch "/events/:id/update" do
