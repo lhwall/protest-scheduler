@@ -56,6 +56,10 @@ patch "/events/:id/update" do
   #binding.pry
   @event = Event.find(params[:id])
   if @event.user == current_user
+    if (params[:category] == "" && params[:new_category] == "") || params[:name] == "" || params[:location] == ""|| params[:date] == ""|| params[:time] == ""
+      flash[:message] = "Please include a name, location, date, time, and category for your event"
+          redirect to "/events/#{@event.id}/update"
+      else
     @event.update(:name => params[:name], :location => params[:location], :date => params[:date], :time => params[:time], :description => params[:description])
     # if params[:new_category] != ""
     #    @category = Category.new(:name => params[:new_category])
@@ -65,6 +69,7 @@ patch "/events/:id/update" do
     #   @event.category_id = params[:category]
       @event.save
     erb :"events/event_detail"
+  end
   else
     redirect to "/user_index"
   end

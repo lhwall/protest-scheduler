@@ -7,7 +7,7 @@
 <%@user.events.each do |event|%>
 <p><strong><a href="/events/<%=event.id%>"><%=event.name%></a></strong></p>
 <p><%=event.location%></p>
-<p><%=event.date%>,<%= event.time%></p>
+<p><%=event.date%>,<%= event.time.to_s.split[1]%></p>
 <a href="/events/<%=event.id%>/update">Update Event</a>
 <%#binding.pry%>
 <form class="" action="/events/<%=event.id%>/delete" method="post">
