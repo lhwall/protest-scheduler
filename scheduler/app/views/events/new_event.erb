@@ -1,10 +1,13 @@
 <h3>Create a new event:</h3>
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+  <% end %>
 <form class="" action="/new_event" method="post">
   <p>Name: <input type="text" name="name" value=""></p>
   <p>Location: <input type="text" name="location" value=""></p>
   <p>Date: <input type="date" name="date" value=""></p>
   <p>Time: <input type="time" name="time" value=""></p>
-  <p>Brief Description: <input type="text" name="description" value=""></p>
+  <p>Brief Description <em>(Optional)</em>: <input type="text" name="description" value=""></p>
   <p>Event Type:
 <%Category.all.each do |category|%>
     <input type="radio" name="category" id="<%=category.name%>" value="<%=category.id%>"><%=category.name%></input><%end%>

@@ -1,4 +1,7 @@
 <form class="" action="/events/<%=@event.id%>/update" method="post">
+  <% if flash.has?(:message) %>
+    <%= flash[:message] %>
+    <% end %>
   <input id=hidden type="hidden" name="_method" value="patch">
 
   <h3><input type="text" name="name" value="<%=@event.name%>"></h3>
