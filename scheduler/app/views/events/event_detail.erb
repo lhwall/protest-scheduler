@@ -6,10 +6,7 @@
 
 
 <% if @event.user_id == session[:user_id] %>
-<form class="" action="/events/<%event.id%>/update" method="post">
-  <input id=hidden type="hidden" name="_method" value="patch">
-  <input type="submit" name="" value="Edit Event">
-</form>
+<a href="/events/<%=event.id%>/update">Update Event</a>
 <form class="" action="/events/<%event.id%>/delete" method="post">
   <input id=hidden type="hidden" name="_method" value="delete">
   <input type="submit" name="" value="Delete Event">

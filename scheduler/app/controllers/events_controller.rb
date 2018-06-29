@@ -22,13 +22,32 @@ post "/new_event" do
       end
     erb :"events/event_detail"
   else
-    direct to "/log_in"
+    redirect to "/log_in"
   end
 end
 
-get "/events/:id"do
+get "/events/:id" do
 @event = Event.find(params[:id])
 erb :"/events/event_detail"
+end
+
+get "/events/:id/update" do
+#binding.pry
+if logged_in
+  #binding.pry
+  @event = Event.find(params[:id])
+  if @event.user == current_user
+    erb :"/events/update_event"
+  else
+    redirect to "/"
+end
+redirect to "/log_in"
+end
+end
+
+patch "events/:id/update" do
+  binding.pry
+  @event = Event.find(params[:id])
 end
 
 end
