@@ -5,12 +5,13 @@
 <p>You have created <%=@user.events.length %> events.</p>
 
 <%@user.events.each do |event|%>
-<p><strong><%=event.name%></strong></p>
+<p><strong><a href="/events/<%=event.id%>"><%=event.name%></a></strong></p>
 <p><%=event.location%></p>
 <p><%=event.date%>,<%= event.time%></p>
 <a href="/events/<%=event.id%>/update">Update Event</a>
-<form class="" action="/events/<%event.id%>/delete" method="post">
-  <input id=hidden type="hidden" name="_method" value="delete">
+<%#binding.pry%>
+<form class="" action="/events/<%=event.id%>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" name="" value="Delete Event">
 </form>
 <%end%>

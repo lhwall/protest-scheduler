@@ -45,9 +45,21 @@ redirect to "/log_in"
 end
 end
 
-patch "events/:id/update" do
-  binding.pry
+patch "/events/:id/update" do
+  #binding.pry
   @event = Event.find(params[:id])
+end
+
+delete "/events/:id/delete" do
+  #binding.pry
+  if logged_in
+    @event = Event.find(params[:id])
+    if @event.user == current_user
+      @event.delete
+    end
+    redirect to "/user_index"
+  end
+  redirect to "log_in"
 end
 
 end
