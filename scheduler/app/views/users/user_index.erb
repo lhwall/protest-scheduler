@@ -5,6 +5,7 @@
 <p>You have created <%=@user.events.length %> events.</p>
 
 <%@user.events.each do |event|%>
+<hr>
 <p><strong><a href="/events/<%=event.id%>"><%=event.name%></a></strong></p>
 <p><%=event.location%></p>
 <p><%=event.date%>,<%= event.time.to_s.split[1]%></p>

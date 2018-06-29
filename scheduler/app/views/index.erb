@@ -3,6 +3,7 @@ To create or modify an event, please <a href="/log_in">log in</a> or <a href="/s
 <%end%>
 <br><br>
 <% Event.all.each do |event| %>
+<hr>
 <p><strong><a href="/events/<%=event.id%>"><%=event.name%></strong></a></p>
 <p><%=event.location%></p>
 <p><%=event.date%>,<%= event.time.to_s.split[1]%></p>
