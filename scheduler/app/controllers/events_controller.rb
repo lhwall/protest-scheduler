@@ -1,4 +1,7 @@
+require "rack-flash"
+
 class EventsController < ApplicationController
+use Rack::Flash
 
 get "/new_event" do
   #binding.pry
