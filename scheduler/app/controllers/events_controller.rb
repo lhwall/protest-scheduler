@@ -14,6 +14,10 @@ end
 
 post "/new_event" do
   if logged_in
+    if (params[:category] == "" && params[:new_category] == "") || params[:name] == "" || params[:location] == ""|| params[:date] == ""|| params[:time] == ""
+      flash[:message] = "Please include a name, location, date, time, and category for your event"
+          redirect to "/new_event"
+      else
     @event = Event.create(:name => params[:name], :location => params[:location], :date => params[:date], :time => params[:time], :description => params[:description], :user_id => current_user.id)
     if params[:new_category] != ""
        @category = Category.new(:name => params[:new_category])
@@ -24,6 +28,7 @@ post "/new_event" do
       @event.save
       end
     erb :"events/event_detail"
+  end
   else
     redirect to "/log_in"
   end

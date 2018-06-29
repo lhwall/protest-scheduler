@@ -4,10 +4,10 @@
     <% end %>
   <input id=hidden type="hidden" name="_method" value="patch">
 
-  <h3><input type="text" name="name" value="<%=@event.name%>"></h3>
-  <p><input type="text" name="location" value="<%=@event.location%>"></p>
-  <p><input type="date" name="date" value="<%=@event.date%>">, <input type="time" name="time" value="<%=@event.time.to_s.split[1]%>"></p>
-  <p><input type="text" name="description" value="<%=@event.description%>"><%=@event.description%></p><%#binding.pry%>
+  <h3>Event Name: <input type="text" name="name" value="<%=@event.name%>"></h3>
+  <p>Location: <input type="text" name="location" value="<%=@event.location%>"></p>
+  <p>Date and Time: <input type="date" name="date" value="<%=@event.date%>">, <input type="time" name="time" value="<%=@event.time.to_s.split[1]%>"></p>
+  <p>Description <em>(Optional)</em><input type="text" name="description" value="<%=@event.description%>"><%=@event.description%></p><%#binding.pry%>
   <%if @event.category_id %><p><strong><%=@event.category.name  %></strong></p><%end%>
 
 
