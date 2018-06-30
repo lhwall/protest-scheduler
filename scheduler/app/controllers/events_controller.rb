@@ -61,12 +61,14 @@ patch "/events/:id/update" do
           redirect to "/events/#{@event.id}/update"
       else
     @event.update(:name => params[:name], :location => params[:location], :date => params[:date], :time => params[:time], :description => params[:description])
-    # if params[:new_category] != ""
-    #    @category = Category.new(:name => params[:new_category])
-    #    @category.save
-    #    @event.category_id = @category.id
-    # else
-    #   @event.category_id = params[:category]
+    if params[:new_category] != ""
+       @category = Category.new(:name => params[:new_category])
+       @category.save
+       @event.category_id = @category.id
+    else
+      @event.category_id = params[:category]
+      @event.save
+      end
       @event.save
     erb :"events/event_detail"
   end
