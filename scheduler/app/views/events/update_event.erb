@@ -8,7 +8,9 @@
   <p>Location: <input type="text" name="location" value="<%=@event.location%>"></p>
   <p>Date and Time: <input type="date" name="date" value="<%=@event.date%>">, <input type="time" name="time" value="<%=@event.time.to_s.split[1]%>"></p>
   <p>Description <em>(Optional)</em><input type="text" name="description" value="<%=@event.description%>"><%=@event.description%></p><%#binding.pry%>
-  <%if @event.category_id %><p><strong><%=@event.category.name  %></strong></p><%end%>
+  <%Category.all.each do |category|%>
+      <input type="radio" name="category" id="<%=category.name%>" value="<%=category.id%>"<%="checked" if @event.category.name == category.name %>><%=category.name%></input><%end%>
+      <p>Or create a new category: <input type="text" name="new_category" value=""></p>
 
 
   <input type="submit" name="" value="Edit Event">

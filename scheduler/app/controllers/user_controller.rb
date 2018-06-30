@@ -36,6 +36,7 @@ post "/log_in" do
     session[:user_id] = @user.id
   erb :"users/user_index"
   else
+    flash[:message] = "That is not the correct password"
     erb :"users/log_in"
 end
 end
