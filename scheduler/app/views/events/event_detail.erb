@@ -3,8 +3,8 @@
 <p><%=@event.date%>,<%= @event.time.to_s.split[1]%></p>
 <p><%=@event.description%></p><%#binding.pry%>
 <%if @event.category_id %><p><strong><%=@event.category.name  %></strong></p><%end%>
-
-<% if @event.user_id == session[:user_id] %>
+<%binding.pry%>
+<% if logged_in && @event.user_id == session[:user_id] %>
 <a href="/events/<%=@event.id%>/update">Update Event</a>
 <form class="" action="/events/<%=@event.id%>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
