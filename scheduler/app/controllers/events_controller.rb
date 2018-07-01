@@ -3,6 +3,7 @@ require "rack-flash"
 class EventsController < ApplicationController
 use Rack::Flash
 
+#retrieves new event page
 get "/new_event" do
   #binding.pry
   if logged_in
@@ -12,9 +13,11 @@ else
 end
 end
 
+
+#creates new event belonging to a logged in user if it has all required fields or redirects them to log in
 post "/new_event" do
   if logged_in
-    #binding.pry
+
     if ((params[:category] == "" || !params.has_key?("category")) && (!params.has_key?("new_category") || params[:new_category] == "")) || params[:name] == "" || params[:location] == ""|| params[:date] == ""|| params[:time] == ""
       flash[:message] = "Please include a name, location, date, time, and category for your event"
           redirect to "/new_event"
@@ -35,11 +38,13 @@ post "/new_event" do
   end
 end
 
+#retrieves page with details about an individual event
 get "/events/:id" do
 @event = Event.find(params[:id])
 erb :"events/event_detail"
 end
 
+#retrieves page to update an event belonging to a user
 get "/events/:id/update" do
   if logged_in
     @event = Event.find(params[:id])
@@ -53,6 +58,7 @@ get "/events/:id/update" do
   end
 end
 
+#updates event if the correct user is logged in
 patch "/events/:id/update" do
   #binding.pry
   @event = Event.find(params[:id])
@@ -78,6 +84,7 @@ patch "/events/:id/update" do
   end
 end
 
+#deletes an event if the correct user is logged in
 delete "/events/:id/delete" do
   #binding.pry
   if logged_in
