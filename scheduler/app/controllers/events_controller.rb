@@ -14,7 +14,8 @@ end
 
 post "/new_event" do
   if logged_in
-    if (params[:category] == "" && params[:new_category] == "") || params[:name] == "" || params[:location] == ""|| params[:date] == ""|| params[:time] == ""
+    #binding.pry
+    if ((params[:category] == "" || !params.has_key?("category")) && (!params.has_key?("new_category") || params[:new_category] == "")) || params[:name] == "" || params[:location] == ""|| params[:date] == ""|| params[:time] == ""
       flash[:message] = "Please include a name, location, date, time, and category for your event"
           redirect to "/new_event"
       else
@@ -56,7 +57,7 @@ patch "/events/:id/update" do
   #binding.pry
   @event = Event.find(params[:id])
   if @event.user == current_user
-    if (params[:category] == "" && params[:new_category] == "") || params[:name] == "" || params[:location] == ""|| params[:date] == ""|| params[:time] == ""
+    if ((params[:category] == "" || !params.has_key?("category")) && (!params.has_key?("new_category") || params[:new_category] == "")) || params[:name] == "" || params[:location] == ""|| params[:date] == ""|| params[:time] == ""
       flash[:message] = "Please include a name, location, date, time, and category for your event"
           redirect to "/events/#{@event.id}/update"
       else
