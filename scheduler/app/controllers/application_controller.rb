@@ -11,6 +11,7 @@ class ApplicationController < Sinatra::Base
 
 #retrieves index page
   get "/" do
+    @events = Event.all
     erb :index
   end
 

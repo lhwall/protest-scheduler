@@ -1,6 +1,6 @@
 <h3><%=@event.name%></h3>
 <p>Location: <%=@event.location%></p>
-<p><%=@event.date%>,<%= @event.time.to_s.split[1]%></p>
+<p><%=@event.date%>,<%= @event.formatted_time%></p>
 <p><%=@event.description%></p><%#binding.pry%>
 <%if @event.category_id %><p><strong><%=@event.category.name  %></strong></p><%end%>
 <p>Created by <%=@event.user.username%></p>

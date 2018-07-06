@@ -6,7 +6,7 @@
 
   <h3>Event Name: <input type="text" name="name" value="<%=@event.name%>"></h3>
   <p>Location: <input type="text" name="location" value="<%=@event.location%>"></p>
-  <p>Date and Time: <input type="date" name="date" value="<%=@event.date%>">, <input type="time" name="time" value="<%=@event.time.to_s.split[1]%>"></p>
+  <p>Date and Time: <input type="date" name="date" value="<%=@event.date%>">, <input type="time" name="time" value="<%=@event.formatted_time%>"></p>
   <p>Description <em>(Optional)</em><input type="text" name="description" value="<%=@event.description%>"><%=@event.description%></p><%#binding.pry%>
   <%Category.all.each do |category|%>
       <input type="radio" name="category" id="<%=category.name%>" value="<%=category.id%>"<%="checked" if @event.category.name == category.name %>><%=category.name%></input><%end%>

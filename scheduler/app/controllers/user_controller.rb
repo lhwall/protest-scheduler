@@ -58,7 +58,7 @@ end
 #logs out a user
     get "/log_out" do
       session.destroy
-      erb :index
+      redirect to "/"
     end
 
 end

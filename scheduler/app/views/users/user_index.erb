@@ -3,12 +3,16 @@
 <a href="/new_event">Create a New Event</a>
 <br>
 <p>You have created <%=@user.events.length %> events.</p>
+<p>Your events belong to these categories:</p>
+<% @user.categories.uniq.each do |category| %>
+<%= category.name %>
+<%end%>
 
 <%@user.events.each do |event|%>
 <hr>
 <p><strong><a href="/events/<%=event.id%>"><%=event.name%></a></strong></p>
 <p>Location: <%=event.location%></p>
-<p><%=event.date%>,<%= event.time.to_s.split[1]%></p>
+<p><%=event.date%>,<%= event.formatted_time%></p>
 <a href="/events/<%=event.id%>/update">Update Event</a>
 <%#binding.pry%>
 <form class="" action="/events/<%=event.id%>/delete" method="post">

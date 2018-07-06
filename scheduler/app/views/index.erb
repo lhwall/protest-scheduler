@@ -2,10 +2,10 @@ Welcome to the Protest Scheduler!  <%if !logged_in%>
 To create or modify an event, please <a href="/log_in">log in</a> or <a href="/sign_up">sign up</a>.
 <%end%>
 <br><br>
-<% Event.all.each do |event| %>
+<% @events.each do |event| %>
 <p><strong><a href="/events/<%=event.id%>"><%=event.name%></strong></a></p>
 <p>Location: <%=event.location%></p>
-<p><%=event.date%>,<%= event.time.to_s.split[1]%></p>
+<p><%=event.date%>,<%= event.formatted_time%></p>
 <%if event.category_id %><p><strong><%=event.category.name  %></strong></p><%end%>
 <p>Created by <%=event.user.username%></p>
 <hr>
